@@ -81,12 +81,20 @@
 		]]>
 		</select>
 	
-		<update id="modify" parameterType="map">
+	<update id="modify" parameterType="map">
 		<![CDATA[
 		update board 
 		   set title = #{title}
 			 , contents = #{contents}
 			 , state = 'u'
+		 where no = #{no}
+		]]>
+	</update>
+	
+	<update id="delete" parameterType="long">
+		<![CDATA[
+		update board 
+		   set state = 'n' 
 		 where no = #{no}
 		]]>
 	</update>

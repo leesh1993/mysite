@@ -90,40 +90,9 @@ public class BoardDao {
 	}
 		
 	public Boolean delete(Long no) {
-		boolean result = false;
+		int count = sqlSession.update("board.delete",no);
 		
-		Connection connection = null;
-		PreparedStatement pstmt = null;
-		
-		try {
-			connection = getConnection();
-			
-			String sql = " update board" + 
-					     " set state = 'n'" + 
-					     " where no = ?";	
-			
-			pstmt = connection.prepareStatement(sql);
-			pstmt.setLong(1, no);
-		
-			int count =  pstmt.executeUpdate();
-			
-			result = (count == 1);
-			
-		} catch (SQLException e) {
-			System.out.println("error:" + e);
-		} finally {
-			try {
-				if(pstmt != null) {
-					pstmt.close();
-				}
-				if(connection != null) {
-					connection.close();
-				}
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
-		return result;		
+		return count == 1;	
 	}	
 
 	public Boolean updateHit(Long hit, Long no) {
