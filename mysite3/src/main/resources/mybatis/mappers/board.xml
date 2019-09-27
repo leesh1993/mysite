@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="board">
+
+		<insert id="insert" parameterType="boardvo">
+		<![CDATA[
+		 insert 
+		 into board 
+		 values(null, #{title}, #{contents}, 0, now(), (SELECT IFNULL(MAX(b.g_no) + 1, 1) from board b), 1, 0, #{user_no},'y')
+		]]>
+		</insert>
+		
+		<update id="writeUpdate" parameterType="boardvo">
+		<![CDATA[
+		update board 
+		   set o_no = (o_no + 1) 
+		 where g_no= #{g_no} and o_no > #{o_no}
+		]]>
+		</update>
+		
+		<insert id="writeInsert" parameterType="boardvo">
+		<![CDATA[
+		 insert 
+		 into board 
+		 values(null, #{title}, #{contents}, 0, now(), #{g_no}, (#{o_no} + 1), (#{depth} + 1), #{user_no},'y')
+		]]>
+		</insert>
+		
+		<select id="getAll" parameterType="int" resultType="boardvo">
+		<![CDATA[
+		select b.no as no
+		     , b.title as title
+		     , b.contents as contents
+		     , b.hit hit
+		     , date_format(b.reg_date,'%Y-%m-%d %h:%i:%s') as reg_date
+		     , b.g_no as g_no
+		     , o_no as o_no
+		     , b.depth as depth
+		     , b.user_no as user_no
+		     , u.name as name
+		     , b.state as state
+		from board b, user u
+		where b.user_no = u.no
+		order by g_no desc, o_no asc
+		limit #{cCount}, 5
+		]]>
+		</select>
+		
+		<select id="getKwd" parameterType="map" resultType="boardvo">
+		<![CDATA[
+		select b.no as no
+		     , b.title as title
+		     , b.contents as contents
+		     , b.hit as hit
+		     , date_format(b.reg_date,'%Y-%m-%d %h:%i:%s') as reg_date
+		     , b.g_no as g_no
+		     , o_no as o_no
+		     , b.depth as depth
+		     , b.user_no as user_no
+		     , u.name as name
+		     , b.state as state
+		from board b, user u
+	   where b.user_no = u.no
+		 and (b.title like '%'||#{search}||'%')
+		 and (b.state = 'y' or b.state = 'u')
+	   order by g_no desc, o_no asc
+	   limit #{cCount}, 5
+		]]>
+		</select>
+	
+</mapper>
