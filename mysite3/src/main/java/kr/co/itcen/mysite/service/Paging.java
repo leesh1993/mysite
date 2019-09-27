@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.co.itcen.mysite.repository.BoardDao;
-import kr.co.itcen.mysite.repository.UserDao;
 
 @Service
 public class Paging {
