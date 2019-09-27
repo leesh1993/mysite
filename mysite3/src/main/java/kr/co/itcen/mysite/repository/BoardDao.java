@@ -96,40 +96,14 @@ public class BoardDao {
 	}	
 
 	public Boolean updateHit(Long hit, Long no) {
-		boolean result = false;
+		HashMap<String, Long> map = new HashMap<String, Long>();
+
+		map.put("hit", hit);
+		map.put("no", no);
 		
-		Connection connection = null;
-		PreparedStatement pstmt = null;
-		
-		try {
-			connection = getConnection();
+		int count = sqlSession.update("board.updateHit",map);
 			
-			String sql = " update board" + 
-					     " set hit =  ?" + 
-					     " where no = ?";	
-			
-			pstmt = connection.prepareStatement(sql);
-			pstmt.setLong(1, hit);
-			pstmt.setLong(2, no);
-			int count =  pstmt.executeUpdate();
-			
-			result = (count == 1);
-			
-		} catch (SQLException e) {
-			System.out.println("error:" + e);
-		} finally {
-			try {
-				if(pstmt != null) {
-					pstmt.close();
-				}
-				if(connection != null) {
-					connection.close();
-				}
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
-		return result;		
+		return count == 1;		
 	}
 	
 	public BoardVo getBoardHit(Long titleNo) {

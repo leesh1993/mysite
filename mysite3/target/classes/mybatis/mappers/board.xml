@@ -98,4 +98,14 @@
 		 where no = #{no}
 		]]>
 	</update>
+	
+	<update id="updateHit" parameterType="map">
+		<![CDATA[
+		update board 
+		   set hit =  #{hit} 
+		 where no = #{no}
+		]]>
+	</update>
+	
+	
 </mapper>
