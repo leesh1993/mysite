@@ -70,14 +70,14 @@
 		
 		<select id="getBoard" parameterType="long" resultType="boardvo">
 		<![CDATA[
-		"select no
+		 select no
 		      , title
 		      , contents
 		      , g_no
 		      , o_no
 		      , depth 
            from board 
-		  where no = 108
+		  where no = #{108}
 		]]>
 		</select>
 	
