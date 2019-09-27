@@ -37,7 +37,7 @@
 					</tr>
 					<c:forEach items='${list}' var='vo' varStatus='status'>
 						<tr>
-							<td>${p.totalCount - (cCount- 1) * 5 - status.index  }</td>
+							<td>${totalCount - (cCount- 1) * 5 - status.index  }</td>
 							<c:choose>
 								<c:when test="${vo.state eq 'y'}">
 									<c:if test="${vo.o_no > 1 }">
@@ -98,11 +98,11 @@
 						</c:if>
 						<c:if test="${cCount > 5 }">
 							<li><a
-								href="${pageContext.servletContext.contextPath }/board/${what }/${p.blockStartNum - 1 }/${text = text}">◀</a></li>
+								href="${pageContext.servletContext.contextPath }/board/${what }/${blockStartNum - 1 }/${text = text}">◀</a></li>
 						</c:if>
-						<c:forEach var="i" begin="${p.blockStartNum }" end="${p.blockLastNum }">
+						<c:forEach var="i" begin="${blockStartNum }" end="${blockLastNum }">
 							<c:choose>
-								<c:when test="${p.lastPageNum >= i}">
+								<c:when test="${lastPageNum >= i}">
 									<c:if test="${cCount eq i }">
 										<li class="selected"><a href="${pageContext.servletContext.contextPath }/board/${what }/${i }/${text = text}">${i }</a></li>
 									</c:if>
@@ -115,8 +115,8 @@
 								</c:otherwise>
 							</c:choose>
 						</c:forEach>
-						<c:if test="${p.lastPageNum > p.blockLastNum }">
-						<li><a href="${pageContext.servletContext.contextPath }/board/${what }/${p.blockLastNum + 1 }/${text = text}">▶</a></li>
+						<c:if test="${lastPageNum > blockLastNum }">
+						<li><a href="${pageContext.servletContext.contextPath }/board/${what }/${blockLastNum + 1 }/${text = text}">▶</a></li>
 						</c:if>
 					</ul>
 

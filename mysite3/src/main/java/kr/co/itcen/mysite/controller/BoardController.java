@@ -42,10 +42,34 @@ public class BoardController {
 		}
 			
 		//페이징 처리===============================================================
-		Paging p = new Paging();
-		p.makeLastPageNum();
-		p.makeBlock(cCount);
-		model.addAttribute("p", p);
+		//Paging p = new Paging();
+		//p.makeLastPageNum();
+		
+		Long totalCount = boardService.getCount();
+		int pageCount = 5;
+		int lastPageNum = 0;
+		
+        if( totalCount % pageCount == 0 ) {
+            lastPageNum = (int)Math.floor(totalCount/pageCount);
+        }
+        else {
+        	lastPageNum = (int)Math.floor(totalCount/pageCount) + 1;
+        }
+        
+        //p.makeBlock(cCount);	
+        int blockNum = (int)Math.floor((cCount-1)/ pageCount);
+        int blockStartNum = (pageCount * blockNum) + 1;
+        int blockLastNum = blockStartNum + (pageCount-1);
+        
+		
+		//model.addAttribute("p", p);
+        
+        model.addAttribute("totalCount", totalCount);
+        model.addAttribute("blockNum", blockNum);
+        model.addAttribute("blockStartNum", blockStartNum);
+        model.addAttribute("blockLastNum", blockLastNum);
+        model.addAttribute("lastPageNum", lastPageNum);
+        
 		model.addAttribute("cCount", cCount);
 		// =====================================================================
 			
@@ -70,16 +94,48 @@ public class BoardController {
 		}
 		
 		//페이징 처리==============================================================
-		Paging p = new Paging();
-		p.makeLastPageNum(text);
-		p.makeBlock(cCount);		
-		model.addAttribute("p", p);
-		model.addAttribute("cCount", cCount);
+		//Paging p = new Paging();
+		//p.makeLastPageNum(text);
+		//p.makeBlock(cCount);		
+		//model.addAttribute("p", p);
+		//model.addAttribute("cCount", cCount);
 		// =====================================================================
 		
 		//for (BoardVo k : list) {
 		//	System.out.println(k.getNo() + ":  " + k.getState());
 		//}
+		
+		//페이징 처리===============================================================
+		//Paging p = new Paging();
+		//p.makeLastPageNum();
+		
+		Long totalCount = boardService.getCount(text);
+		int pageCount = 5;
+		int lastPageNum = 0;
+		
+        if( totalCount % pageCount == 0 ) {
+            lastPageNum = (int)Math.floor(totalCount/pageCount);
+        }
+        else {
+        	lastPageNum = (int)Math.floor(totalCount/pageCount) + 1;
+        }
+        
+        //p.makeBlock(cCount);	
+        int blockNum = (int)Math.floor((cCount-1)/ pageCount);
+        int blockStartNum = (pageCount * blockNum) + 1;
+        int blockLastNum = blockStartNum + (pageCount-1);
+        
+		
+		//model.addAttribute("p", p);
+        
+        model.addAttribute("totalCount", totalCount);
+        model.addAttribute("blockNum", blockNum);
+        model.addAttribute("blockStartNum", blockStartNum);
+        model.addAttribute("blockLastNum", blockLastNum);
+        model.addAttribute("lastPageNum", lastPageNum);
+        
+		model.addAttribute("cCount", cCount);
+		// =====================================================================
 		
 		List<BoardVo> list = boardService.getList(cCount, text);
 		model.addAttribute("list", list);
@@ -105,16 +161,49 @@ public class BoardController {
 		}
 		
 		//페이징 처리==============================================================
-		Paging p = new Paging();
-		p.makeLastPageNum(text);
-		p.makeBlock(cCount);		
-		model.addAttribute("p", p);
-		model.addAttribute("cCount", cCount);
+		//Paging p = new Paging();
+		//p.makeLastPageNum(text);
+		//p.makeBlock(cCount);		
+		//model.addAttribute("p", p);
+		//model.addAttribute("cCount", cCount);
 		// =====================================================================
 		
 		//for (BoardVo k : list) {
 		//	System.out.println(k.getNo() + ":  " + k.getState());
 		//}
+		
+		//페이징 처리===============================================================
+		//Paging p = new Paging();
+		//p.makeLastPageNum();
+		
+		Long totalCount = boardService.getCount(text);
+		int pageCount = 5;
+		int lastPageNum = 0;
+		
+        if( totalCount % pageCount == 0 ) {
+            lastPageNum = (int)Math.floor(totalCount/pageCount);
+        }
+        else {
+        	lastPageNum = (int)Math.floor(totalCount/pageCount) + 1;
+        }
+        
+        //p.makeBlock(cCount);	
+        int blockNum = (int)Math.floor((cCount-1)/ pageCount);
+        int blockStartNum = (pageCount * blockNum) + 1;
+        int blockLastNum = blockStartNum + (pageCount-1);
+        
+		
+		//model.addAttribute("p", p);
+        
+        model.addAttribute("totalCount", totalCount);
+        model.addAttribute("blockNum", blockNum);
+        model.addAttribute("blockStartNum", blockStartNum);
+        model.addAttribute("blockLastNum", blockLastNum);
+        model.addAttribute("lastPageNum", lastPageNum);
+        
+		model.addAttribute("cCount", cCount);
+		// =====================================================================
+		
 		
 		List<BoardVo> list = boardService.getList(cCount, text);
 		model.addAttribute("list", list);
