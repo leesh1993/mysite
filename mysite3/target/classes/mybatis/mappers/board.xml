@@ -76,7 +76,7 @@
 		      , g_no, o_no
 		      , depth 
            from board 
-		  where no = #{no}
+		  where no = #{titleNo}
 		]]>
 		</select>
 	
