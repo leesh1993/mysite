@@ -83,7 +83,7 @@
 	
 		<update id="map" parameterType="uservo">
 		<![CDATA[
-		update board+ 
+		update board 
 		   set title = #{title}
 			 , contents = #{contents}
 			 , state = 'u'
