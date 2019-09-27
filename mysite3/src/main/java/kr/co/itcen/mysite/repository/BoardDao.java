@@ -47,6 +47,7 @@ public class BoardDao {
 	}	
 	
 	public List<BoardVo> getList(int cCount) {
+		cCount = cCount * 5 - 5;
 		return sqlSession.selectList("board.getAll",cCount);
 	}
 	
