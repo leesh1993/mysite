@@ -61,7 +61,7 @@
 		     , b.state as state
 		from board b, user u
 	   where b.user_no = u.no
-		 and (b.title like '%'||#{search}||'%')
+		 and b.title like CONCAT('%',#{search},'%')
 		 and (b.state = 'y' or b.state = 'u')
 	   order by g_no desc, o_no asc
 	   limit #{cCount}, 5
