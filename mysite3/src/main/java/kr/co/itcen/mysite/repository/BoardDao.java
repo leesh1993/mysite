@@ -26,7 +26,7 @@ public class BoardDao {
 			Class.forName("org.mariadb.jdbc.Driver");
 		
 			String url = "jdbc:mariadb://192.168.1.63:3306/webdb?characterEncoding=utf8";
-			connection = DriverManager.getConnection(url, "webdb", "123123");
+			connection = DriverManager.getConnection(url, "webdb", "webdb");
 		
 		} catch (ClassNotFoundException e) {
 			System.out.println("Fail to Loading Driver:" + e);
@@ -307,9 +307,9 @@ public class BoardDao {
 			connection = getConnection();
 			
 			String sql = "select count(b.no) as count" + 
-					 " from board b, user u" + 
-					 " where b.user_no = u.no" +
-					 " order by g_no desc";
+						 " from board b, user u" + 
+						 " where b.user_no = u.no" +
+						 " order by g_no desc";
 			
 			pstmt = connection.prepareStatement(sql);
 
