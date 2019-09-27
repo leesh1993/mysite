@@ -61,7 +61,7 @@ public class Paging {
     public int makeLastPageNum() {
     	
     	BoardDao dao = new BoardDao();
-    	totalCount = boardDao.getCount();
+    	totalCount = dao.getCount();
     	
         if( totalCount % pageCount == 0 ) {
             return lastPageNum = (int)Math.floor(totalCount/pageCount);
@@ -75,7 +75,7 @@ public class Paging {
     public int makeLastPageNum(String kwd) {
 
     	BoardDao dao = new BoardDao();
-    	totalCount = boardDao.getCount(kwd);
+    	totalCount = dao.getCount(kwd);
 
         if( totalCount % pageCount == 0 ) {
             return lastPageNum = (int)Math.floor(totalCount/pageCount);
