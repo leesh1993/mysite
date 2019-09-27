@@ -1,7 +1,8 @@
-package kr.co.itcen.mysite.service;
+package kr.co.itcen.mysite.vo;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import kr.co.itcen.mysite.repository.BoardDao;
 
 @Service
@@ -46,41 +47,5 @@ public class Paging {
 	public static int getPagecount() {
 		return pageCount;
 	}
-	
-	// block을 생성
-    // 현재 페이지가 속한 block의 시작 번호, 끝 번호를 계산
-    public void makeBlock(int curPage){
-        int blockNum = 0;
-
-        blockNum = (int)Math.floor((curPage-1)/ pageCount);
-        blockStartNum = (pageCount * blockNum) + 1;
-        blockLastNum = blockStartNum + (pageCount-1);
-    }
-
-    // 총 페이지의 마지막 번호
-    public int makeLastPageNum() {
-    	
-    	totalCount = boardDao.getCount();
-
-        if( totalCount % pageCount == 0 ) {
-            return lastPageNum = (int)Math.floor(totalCount/pageCount);
-        }
-        else {
-        	return lastPageNum = (int)Math.floor(totalCount/pageCount) + 1;
-        }
-    }
-
-    // 검색을 했을 때 총 페이지의 마지막 번호
-    public int makeLastPageNum(String kwd) {
-
-    	totalCount = boardDao.getCount(kwd);
-
-        if( totalCount % pageCount == 0 ) {
-            return lastPageNum = (int)Math.floor(totalCount/pageCount);
-        }
-        else {
-        	return lastPageNum = (int)Math.floor(totalCount/pageCount) + 1;
-        }
-    }
 
 }
