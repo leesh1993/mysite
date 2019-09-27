@@ -78,51 +78,15 @@ public class BoardDao {
 	}		
 	
 	public boolean modify(Long no, String title, String contents) {
-		boolean result = false;
-		
-		Connection connection = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		
-		try {
-			connection = getConnection();
-			
-			String sql = " update board" + 
-					     " set title = ?" + 
-					     " , contents = ?" + 
-					     " , state = 'u'" + 
-					     " where no = ?";		
-			pstmt = connection.prepareStatement(sql);
-				
+		HashMap<String, Object> map = new HashMap<String, Object>();
 
-			pstmt.setString(1, title);
-			pstmt.setString(2, contents);
-			pstmt.setLong(3, no);
-			
-			int count =  pstmt.executeUpdate();
-			
-			result = (count == 1);
-			
-		} catch (SQLException e) {
-			System.out.println("error:" + e);
-		} finally {
-			try {
-				if(rs != null) {
-					rs.close();
-				}
-				if(pstmt != null) {
-					pstmt.close();
-				}
-				
-				if(connection != null) {
-					connection.close();
-				}
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
+		map.put("no", no);
+		map.put("title", title);
+		map.put("contents", contents);
 		
-		return result;		
+		int count = sqlSession.update("board.modify",map);
+			
+		return count == 1;		
 	}
 		
 	public Boolean delete(Long no) {
