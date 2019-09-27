@@ -107,5 +107,12 @@
 		]]>
 	</update>
 	
+	<select id="getBoardHit" parameterType="long" resultType="boardvo">
+		<![CDATA[
+		select hit
+		  from board 
+		 where no = #{no}
+		]]>
+	</select>	
 	
 </mapper>

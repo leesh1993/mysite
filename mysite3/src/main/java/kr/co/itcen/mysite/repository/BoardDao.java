@@ -107,48 +107,7 @@ public class BoardDao {
 	}
 	
 	public BoardVo getBoardHit(Long titleNo) {
-		BoardVo result = null;
-		
-		Connection connection = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		
-		try {
-			connection = getConnection();
-			
-			String sql = "select hit" + 
-						 " from board" + 
-						 " where no = ?";
-			pstmt = connection.prepareStatement(sql);
-			pstmt.setLong(1, titleNo);
-			
-			rs = pstmt.executeQuery();
-			
-			if(rs.next()){
-				Long hit         = rs.getLong(1);
-		
-				result = new BoardVo();
-				result.setHit(hit);
-			}
-		} catch (SQLException e) {
-			System.out.println("error:" + e);
-		} finally {
-			try {
-				if(rs != null) {
-					rs.close();
-				}
-				if(pstmt != null) {
-					pstmt.close();
-				}
-				if(connection != null) {
-					connection.close();
-				}
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
-		
-		return result;
+		return sqlSession.selectOne("board.getBoardHit",titleNo);
 	}
 
 	public Long getCount() {
