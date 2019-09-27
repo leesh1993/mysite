@@ -37,7 +37,7 @@
 					</tr>
 					<c:forEach items='${list}' var='vo' varStatus='status'>
 						<tr>
-							<td>${p.totalCount}</td>
+							<td>${p.totalCount - (cCount- 1) * 5 - status.index  }</td>
 							<c:choose>
 								<c:when test="${vo.state eq 'y'}">
 									<c:if test="${vo.o_no > 1 }">
