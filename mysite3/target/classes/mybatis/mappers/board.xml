@@ -81,7 +81,7 @@
 		]]>
 		</select>
 	
-		<update id="map" parameterType="uservo">
+		<update id="modify" parameterType="map">
 		<![CDATA[
 		update board 
 		   set title = #{title}
