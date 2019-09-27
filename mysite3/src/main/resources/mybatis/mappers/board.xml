@@ -73,10 +73,11 @@
 		"select no
 		      , title
 		      , contents
-		      , g_no, o_no
+		      , g_no
+		      , o_no
 		      , depth 
            from board 
-		  where no = #{titleNo}
+		  where no = #{108}
 		]]>
 		</select>
 	
