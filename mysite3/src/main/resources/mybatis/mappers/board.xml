@@ -115,4 +115,13 @@
 		]]>
 	</select>	
 	
+	<select id="getCount" resultType="long">
+		<![CDATA[
+		select count(b.no) as count 
+		  from board b, user u 
+		 where b.user_no = u.no
+		 order by g_no desc
+		]]>
+	</select>
+	
 </mapper>
