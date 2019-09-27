@@ -60,8 +60,9 @@ public class Paging {
     // 총 페이지의 마지막 번호
     public int makeLastPageNum() {
     	
-    	totalCount = boardDao.getCount();
-
+    	BoardDao dao = new BoardDao();
+    	totalCount = dao.getCount();
+    	
         if( totalCount % pageCount == 0 ) {
             return lastPageNum = (int)Math.floor(totalCount/pageCount);
         }
@@ -73,7 +74,8 @@ public class Paging {
     // 검색을 했을 때 총 페이지의 마지막 번호
     public int makeLastPageNum(String kwd) {
 
-    	totalCount = boardDao.getCount(kwd);
+    	BoardDao dao = new BoardDao();
+    	totalCount = dao.getCount(kwd);
 
         if( totalCount % pageCount == 0 ) {
             return lastPageNum = (int)Math.floor(totalCount/pageCount);
