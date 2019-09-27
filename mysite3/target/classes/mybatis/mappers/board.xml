@@ -77,7 +77,7 @@
 		      , o_no
 		      , depth 
            from board 
-		  where no = #{108}
+		  where no = 108
 		]]>
 		</select>
 	
