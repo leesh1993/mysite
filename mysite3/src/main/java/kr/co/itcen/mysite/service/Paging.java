@@ -1,11 +1,17 @@
 package kr.co.itcen.mysite.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.co.itcen.mysite.repository.BoardDao;
+import kr.co.itcen.mysite.repository.UserDao;
 
 @Service
 public class Paging {
+	
+	@Autowired
+	private BoardDao boardDao; 
+	
     private final static int pageCount = 5;
     private int blockStartNum = 0;
     private int blockLastNum = 0;
@@ -67,8 +73,8 @@ public class Paging {
 
     // 검색을 했을 때 총 페이지의 마지막 번호
     public int makeLastPageNum(String kwd) {
-    	BoardDao dao = new BoardDao();
-    	totalCount = dao.getCount(kwd);
+
+    	totalCount = boardDao.getCount(kwd);
 
         if( totalCount % pageCount == 0 ) {
             return lastPageNum = (int)Math.floor(totalCount/pageCount);
