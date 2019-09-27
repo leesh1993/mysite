@@ -34,6 +34,7 @@
 			value="jdbc:mariadb://192.168.1.63:3306/webdb?characterEncoding=utf8" />
 		<property name="username" value="webdb" />
 		<property name="password" value="webdb" />
+<!-- 		<property name="password" value="webdb" /> -->
 	</bean>
 	
 	<!-- MyBatis SqlSessionFactoryBean -->

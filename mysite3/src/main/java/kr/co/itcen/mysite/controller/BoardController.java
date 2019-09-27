@@ -27,7 +27,10 @@ import kr.co.itcen.mysite.vo.UserVo;
 public class BoardController {
 
 	@Autowired //주입
-	private BoardService boardService ;	
+	private BoardService boardService;
+	
+	@Autowired
+	private Paging paging;
 	
 	@RequestMapping(value = "/list/{cCount}", method = RequestMethod.GET)
 	public String getList(@PathVariable("cCount") int cCount,  
@@ -42,10 +45,10 @@ public class BoardController {
 		}
 			
 		//페이징 처리===============================================================
-		Paging p = new Paging();
-		p.makeLastPageNum();
-		p.makeBlock(cCount);
-		model.addAttribute("p", p);
+//		Paging p = new Paging();
+		paging.makeLastPageNum();
+		paging.makeBlock(cCount);
+		model.addAttribute("p", paging);
 		model.addAttribute("cCount", cCount);
 		// =====================================================================
 			
@@ -70,10 +73,10 @@ public class BoardController {
 		}
 		
 		//페이징 처리==============================================================
-		Paging p = new Paging();
-		p.makeLastPageNum(text);
-		p.makeBlock(cCount);		
-		model.addAttribute("p", p);
+		//Paging p = new Paging();
+		paging.makeLastPageNum(text);
+		paging.makeBlock(cCount);		
+		model.addAttribute("p", paging);
 		model.addAttribute("cCount", cCount);
 		// =====================================================================
 		
@@ -105,10 +108,10 @@ public class BoardController {
 		}
 		
 		//페이징 처리==============================================================
-		Paging p = new Paging();
-		p.makeLastPageNum(text);
-		p.makeBlock(cCount);		
-		model.addAttribute("p", p);
+		//Paging p = new Paging();
+		paging.makeLastPageNum(text);
+		paging.makeBlock(cCount);		
+		model.addAttribute("p", paging);
 		model.addAttribute("cCount", cCount);
 		// =====================================================================
 		

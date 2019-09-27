@@ -12,7 +12,7 @@ public class BoardVo {
 	private Long user_no;
 	private String state;	
 	private String user_name;
-	private Long rownum;
+	private Long count;
 	
 	public Long getNo() {
 		return no;
@@ -82,10 +82,10 @@ public class BoardVo {
 	}
 	
 	public Long getRownum() {
-		return rownum;
+		return count;
 	}
-	public void setRownum(Long rownum) {
-		this.rownum = rownum;
+	public void setRownum(Long count) {
+		this.count = count;
 	}
 	
 	@Override

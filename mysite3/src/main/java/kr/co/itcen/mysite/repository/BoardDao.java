@@ -19,22 +19,6 @@ public class BoardDao {
 	@Autowired
 	private SqlSession sqlSession;
 	
-	private Connection getConnection() throws SQLException {
-		Connection connection = null;
-		
-		try {
-			Class.forName("org.mariadb.jdbc.Driver");
-		
-			String url = "jdbc:mariadb://192.168.1.63:3306/webdb?characterEncoding=utf8";
-			connection = DriverManager.getConnection(url, "webdb", "webdb");
-		
-		} catch (ClassNotFoundException e) {
-			System.out.println("Fail to Loading Driver:" + e);
-		}
-		
-		return connection;
-	}
-	
 	public Boolean write(BoardVo vo) {
 		int count = sqlSession.insert("board.insert",vo);
 		return count == 1;	
@@ -115,49 +99,6 @@ public class BoardDao {
 	}
 
 	public Long getCount(String kwd) {
-		Long result = -1L;
-		
-		Connection connection = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		
-		try {
-			connection = getConnection();
-			
-			String sql = "select count(b.no) as count" + 
-					 " from board b, user u" + 
-					 " where b.user_no = u.no" +
-					 " and b.title like ?" +
-					 " and (b.state = 'y' or b.state = 'u')" +
-					 " order by g_no desc";
-			
-			pstmt = connection.prepareStatement(sql);
-			pstmt.setString(1, "%" + kwd + "%");
-			
-			rs = pstmt.executeQuery();
-			
-			if(rs.next()){
-				Long count         = rs.getLong(1);				
-				result = count;
-			}
-		} catch (SQLException e) {
-			System.out.println("error:" + e);
-		} finally {
-			try {
-				if(rs != null) {
-					rs.close();
-				}
-				if(pstmt != null) {
-					pstmt.close();
-				}
-				if(connection != null) {
-					connection.close();
-				}
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
-		
-		return result;
+		return sqlSession.selectOne("board.getCount2",kwd);
 	}		
 }

@@ -124,4 +124,15 @@
 		]]>
 	</select>
 	
+		<select id="getCount2" parameterType= "string" resultType="long">
+		<![CDATA[
+		select count(b.no) as count
+		  from board b, user u
+		 where b.user_no = u.no
+		   and b.title like CONCAT('%',#{kwd},'%')
+		   and (b.state = 'y' or b.state = 'u')
+		 order by g_no desc
+		]]>
+	</select>
+	
 </mapper>

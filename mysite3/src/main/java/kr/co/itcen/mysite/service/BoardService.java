@@ -66,5 +66,6 @@ public class BoardService {
 		
 		return boardDao.getCount(kwd);
 	}
-			
+	
+		
 }
