@@ -67,5 +67,17 @@
 	   limit #{cCount}, 5
 		]]>
 		</select>
+		
+		<select id="getBoard" parameterType="long" resultType="boardvo">
+		<![CDATA[
+		"select no
+		      , title
+		      , contents
+		      , g_no, o_no
+		      , depth 
+           from board 
+		  where no = #{no}
+		]]>
+		</select>
 	
 </mapper>

@@ -74,59 +74,7 @@ public class BoardDao {
 	}	
 	
 	public BoardVo getBoard(Long titleNo) {
-		BoardVo result = null;
-		
-		Connection connection = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		
-		try {
-			connection = getConnection();
-	
-			String sql = "select no ,title, contents, g_no, o_no, depth" + 
-						 " from board" + 
-						 " where no = ?";
-			pstmt = connection.prepareStatement(sql);
-			pstmt.setLong(1, titleNo);
-			
-			rs = pstmt.executeQuery();
-			
-			if(rs.next()){
-				Long no         = rs.getLong(1);
-				String title    = rs.getString(2);
-				String contents = rs.getString(3);
-				Long g_no = rs.getLong(4);
-				Long o_no = rs.getLong(5);
-				Long depth = rs.getLong(6);
-				
-				result = new BoardVo();
-				result.setNo(no);
-				result.setTitle(title);
-				result.setContents(contents);
-				result.setG_no(g_no);
-				result.setO_no(o_no);
-				result.setDepth(depth);
-
-			}
-		} catch (SQLException e) {
-			System.out.println("error:" + e);
-		} finally {
-			try {
-				if(rs != null) {
-					rs.close();
-				}
-				if(pstmt != null) {
-					pstmt.close();
-				}
-				if(connection != null) {
-					connection.close();
-				}
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
-		
-		return result;
+		return sqlSession.selectOne("board.getBoard",titleNo);
 	}		
 	
 	public boolean modify(Long no, String title, String contents) {
