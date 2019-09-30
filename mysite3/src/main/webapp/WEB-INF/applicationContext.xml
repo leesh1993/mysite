@@ -35,7 +35,7 @@
 		<property name="username" value="webdb" />
 		<property name="password" value="webdb" />
 <!-- 		<property name="password" value="webdb" /> -->
-	</bean>
+	</bean> 
 	
 	<!-- MyBatis SqlSessionFactoryBean -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
