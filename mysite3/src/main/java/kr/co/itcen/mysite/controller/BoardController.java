@@ -153,10 +153,12 @@ public class BoardController {
 		return "board/view";
 	}
 	
-	@RequestMapping(value = "/write", method = RequestMethod.GET)
-	public String write(Model model) {
+	@RequestMapping(value = "/write/{cCount}", method = RequestMethod.GET)
+	public String write(Model model,
+			            @PathVariable("cCount") int cCount) {
 		
 		model.addAttribute("write","write");
+		model.addAttribute("cCount",cCount);
 		
 		return "board/write";
 	}
@@ -227,6 +229,9 @@ public class BoardController {
 		model.addAttribute("depth",depth);
 		model.addAttribute("cCount",cCount);
 		
+		//System.out.println("boardreply1 " + boardVo.getG_no() + " : " + boardVo.getO_no() + " : " + boardVo.getDepth());
+		System.out.println("boardreply2 " + g_no);
+		
 		return "/board/write";
 	}
 	
@@ -250,11 +255,11 @@ public class BoardController {
 		}
 		
 
-		vo.setG_no(g_no);
-		vo.setO_no(o_no);
-		vo.setDepth(depth);
-		vo.setTitle(title);
-		vo.setContents(contents);	
+		//vo.setG_no(g_no);
+		//vo.setO_no(o_no);
+		//vo.setDepth(depth);
+		//vo.setTitle(title);
+		//vo.setContents(contents);	
 		boardService.boardReply(vo);
 			
 		return "redirect:/board/list/" + cCount;

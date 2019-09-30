@@ -37,7 +37,8 @@
 						</tr>
 					</table>
 					<div class="bottom">
-						<a href="${pageContext.servletContext.contextPath }/board">취소</a>
+					<!-- 찾기중인지, 기본상태인지 구분해서 cancel 보내기.. -->
+						<a href="${pageContext.servletContext.contextPath }/board/cancel/${cCount}">취소</a>
 						<input type="submit" value="등록">
 					</div>
 				</form>				

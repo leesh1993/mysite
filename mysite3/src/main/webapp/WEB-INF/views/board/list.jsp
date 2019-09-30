@@ -125,7 +125,7 @@
 				<c:if test="${user eq 'logO'}">
 					<div class="bottom">
 						<a
-							href="${pageContext.servletContext.contextPath }/board/write" id="new-book">글쓰기</a>
+							href="${pageContext.servletContext.contextPath }/board/write/${cCount}" id="new-book">글쓰기</a>
 					</div>
 				</c:if>
 			</div>
