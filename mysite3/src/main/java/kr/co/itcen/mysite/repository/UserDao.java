@@ -41,10 +41,17 @@ public class UserDao {
 		return sqlSession.selectOne("user.getByNo",no);	
 	}
 	
+	public UserVo get(String email) {
+		
+		return sqlSession.selectOne("user.getByEmail",email);	
+	}
+	
 	public boolean update(UserVo vo) {		
 		int count = sqlSession.update("user.update", vo);
 		
 		return count == 1;
 	}
+
+
 	
 }

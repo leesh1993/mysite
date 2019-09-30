@@ -13,12 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import kr.co.itcen.mysite.repository.BoardDao;
 import kr.co.itcen.mysite.service.BoardService;
-import kr.co.itcen.mysite.service.GuestbookService;
 import kr.co.itcen.mysite.service.Paging;
 import kr.co.itcen.mysite.vo.BoardVo;
-import kr.co.itcen.mysite.vo.GuestbookVo;
 import kr.co.itcen.mysite.vo.UserVo;
 
 
