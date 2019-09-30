@@ -15,6 +15,7 @@
 		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd">
 
 	<context:annotation-config />
+	
 	<context:component-scan
 		base-package="kr.co.itcen.mysite.service, kr.co.itcen.mysite.repository">
 		<context:include-filter type="annotation"
@@ -34,7 +35,6 @@
 			value="jdbc:mariadb://192.168.1.63:3306/webdb?characterEncoding=utf8" />
 		<property name="username" value="webdb" />
 		<property name="password" value="webdb" />
-<!-- 		<property name="password" value="webdb" /> -->
 	</bean> 
 	
 	<!-- MyBatis SqlSessionFactoryBean -->

@@ -21,7 +21,7 @@ public class BoardDao {
 		return count == 1;	
 	}
 	
-	public Boolean boardReply(BoardVo vo) {
+	public Boolean boardReply(BoardVo vo) throws BoardDaoException{
 		int count1 = sqlSession.update("board.writeUpdate",vo);
 		int count2 = sqlSession.insert("board.writeInsert",vo);
 		return count2 == 1;
