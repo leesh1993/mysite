@@ -32,21 +32,21 @@ public class UserDao {
 		return count == 1;	
 	}
 	
-	public UserVo get(UserVo vo) {
+	public UserVo get(UserVo vo) throws UserDaoException {
 		return sqlSession.selectOne("user.getByEmailAndPassword",vo);
 	}
 	
 	
-	public UserVo get(Long no) {
+	public UserVo get(Long no) throws UserDaoException {
 		return sqlSession.selectOne("user.getByNo",no);	
 	}
 	
-	public UserVo get(String email) {
+	public UserVo get(String email) throws UserDaoException {
 		
 		return sqlSession.selectOne("user.getByEmail",email);	
 	}
 	
-	public boolean update(UserVo vo) {		
+	public boolean update(UserVo vo) throws UserDaoException {		
 		int count = sqlSession.update("user.update", vo);
 		
 		return count == 1;
