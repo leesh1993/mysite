@@ -290,4 +290,10 @@ public class BoardController {
 		
 		return "redirect:/board/list/" + cCount;
 	}
+	
+	@RequestMapping(value = "/filedownload", method = RequestMethod.GET)
+	public String fileDownload() {
+		
+		return "";
+	}
 }

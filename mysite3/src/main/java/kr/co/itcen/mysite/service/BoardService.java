@@ -139,4 +139,9 @@ public class BoardService {
 		
 		return boardDao.getFile(titleNo);
 	}
+	
+	public void fileDownload() {
+		
+		
+	}
 }

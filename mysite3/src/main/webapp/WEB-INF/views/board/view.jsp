@@ -10,6 +10,28 @@
 <title>mysite</title>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <link href="${pageContext.servletContext.contextPath }/assets/css/board.css" rel="stylesheet" type="text/css">
+<script src="${pageContext.servletContext.contextPath }/assets/js/jquery/jquery-1.9.0.js" type="text/javascript"></script>
+<script>
+$(function(){
+	
+
+	
+	$("#btn-download-file").click(function(){
+		alert("파일명 [${fileUploadVo.original_name}] 다운로드 시작하겠습니다. ");
+		
+		// ajax 통신
+		$.ajax({
+			url: "${pageContext.servletContext.contextPath }/api/board/download?titleNo=" + ${boardVo.no},
+			type: "get",
+			dataType: "json",
+			data: ""
+		});
+	});
+	
+	
+	
+});
+</script>
 </head>
 <body>
 	<div id="container">
@@ -35,7 +57,10 @@
 					<tr>
 						<c:if test="${fileO eq 'fileO' }">
 						<td class="label">파일업로드</td>
-						<td href="">${fileUploadVo.original_name}</td>
+						<td>${fileUploadVo.original_name}
+						<!-- <td style="cursor:hand" onClick="location.href='${pageContext.servletContext.contextPath }/board/filedownload'">${fileUploadVo.original_name} -->
+						<input id="btn-download-file" type="button" value="다운로드">
+						</td>
 						</c:if>
 					</tr>
 				</table>

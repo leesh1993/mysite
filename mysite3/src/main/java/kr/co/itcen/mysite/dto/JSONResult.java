@@ -5,6 +5,18 @@ public class JSONResult {
 	private Object data;     /* if sucess, set*/
 	private String message; /* if fail, set*/
 	
+	public String getResult() {
+		return result;
+	}
+	
+	public Object getData() {
+		return data;
+	}
+	
+	public String getMessage() {
+		return message;
+	}
+	
 	public static JSONResult success(Object data) {
 		return new JSONResult(data);
 	}
@@ -26,17 +38,6 @@ public class JSONResult {
 		this.message = message;
 	}
 	
-	public String getResult() {
-		return result;
-	}
-	
-	public Object getData() {
-		return data;
-	}
-	
-	public String getMessage() {
-		return message;
-	}
 
 
 	
