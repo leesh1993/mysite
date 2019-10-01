@@ -12,10 +12,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
+import kr.co.itcen.mysite.exception.FileUploadException;
 import kr.co.itcen.mysite.service.BoardService;
 import kr.co.itcen.mysite.service.Paging;
 import kr.co.itcen.mysite.vo.BoardVo;
+import kr.co.itcen.mysite.vo.FileUploadVo;
 import kr.co.itcen.mysite.vo.UserVo;
 
 
@@ -143,13 +146,19 @@ public class BoardController {
 		
 		//해당 타이틀 번호의 데이터 가져오기
 		BoardVo boardVo = boardService.getBoard(no);
+		model.addAttribute("boardVo", boardVo);
+		
+		//파일 가져오기
+		FileUploadVo fileUploadVo = boardService.getFile(no);
+		if(fileUploadVo !=null) {
+			model.addAttribute("fileUploadVo", fileUploadVo);
+			model.addAttribute("fileO", "fileO");
+		}
 		
 		//조회수 증가
 		BoardVo hitCount = boardService.getBoardHit(no);
 		boardService.updateHit(hitCount.getHit() + 1 ,no);
-		
-		model.addAttribute("boardVo", boardVo);
-		
+	
 		return "board/view";
 	}
 	
@@ -165,6 +174,7 @@ public class BoardController {
 	
 	@RequestMapping(value = "/write", method = RequestMethod.POST)
 	public String write(@ModelAttribute BoardVo vo,
+						@RequestParam(value="file",required=false) MultipartFile multipartFile,
 			            HttpSession session,
 			            Model model) {
 		
@@ -177,6 +187,12 @@ public class BoardController {
 		}
 		
 		boardService.write(vo);
+		
+		if(multipartFile != null) {
+			String url = boardService.restore(vo.getNo(),multipartFile);
+			System.out.println("url : " + url);
+		}
+		
 		return "redirect:/board/list/1";
 	}
 	

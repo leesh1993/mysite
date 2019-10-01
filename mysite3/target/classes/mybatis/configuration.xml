@@ -5,6 +5,7 @@
 		<typeAlias type="kr.co.itcen.mysite.vo.UserVo" alias="uservo"/>
 		<typeAlias type="kr.co.itcen.mysite.vo.GuestbookVo" alias="guestbookvo"/>
 		<typeAlias type="kr.co.itcen.mysite.vo.BoardVo" alias="boardvo"/>
+		<typeAlias type="kr.co.itcen.mysite.vo.FileUploadVo" alias="fileuploadvo"/>
 	</typeAliases>
 	<mappers>
 		<mapper resource="mybatis/mappers/user.xml" />

@@ -1,7 +1,5 @@
 package kr.co.itcen.mysite.vo;
 
-import java.sql.Date;
-
 public class GuestbookVo {
 	private Long no;
 	private String name;

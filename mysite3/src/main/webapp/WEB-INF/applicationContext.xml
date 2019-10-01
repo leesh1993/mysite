@@ -13,11 +13,14 @@
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
 		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd">
-
+	
+	
+	<aop:aspectj-autoproxy/>
 	<context:annotation-config />
 	
 	<context:component-scan
-		base-package="kr.co.itcen.mysite.service, kr.co.itcen.mysite.repository">
+		base-package="kr.co.itcen.mysite.service, kr.co.itcen.mysite.repository, kr.co.itcen.mysite.aspect">
+		
 		<context:include-filter type="annotation"
 			expression="org.springframework.stereotype.Repository" />
 		<context:include-filter type="annotation"
@@ -34,7 +37,7 @@
 		<property name="url"
 			value="jdbc:mariadb://192.168.1.63:3306/webdb?characterEncoding=utf8" />
 		<property name="username" value="webdb" />
-		<property name="password" value="webdb" />
+		<property name="password" value="123123" />
 	</bean> 
 	
 	<!-- MyBatis SqlSessionFactoryBean -->

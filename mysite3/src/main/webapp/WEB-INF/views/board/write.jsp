@@ -16,10 +16,10 @@
 		<div id="content">
 			<div id="board">		
 				<c:if test="${write eq 'write' }">
-				<form class="board-form" method="post" action="${pageContext.servletContext.contextPath }/board/${write }">
+				<form class="board-form" method="post" action="${pageContext.servletContext.contextPath }/board/${write }" enctype="multipart/form-data">
 				</c:if>
 				<c:if test="${write eq 'boardreply' }">
-				<form class="board-form" method="post" action="${pageContext.servletContext.contextPath }/board/${write }/${g_no }/${o_no }/${depth }/${cCount }">
+				<form class="board-form" method="post" action="${pageContext.servletContext.contextPath }/board/${write }/${g_no }/${o_no }/${depth }/${cCount }" enctype="multipart/form-data">
 				</c:if>
 					<table class="tbl-ex">
 						<tr>
@@ -35,9 +35,13 @@
 								<textarea id="content" name="contents"></textarea>
 							</td>
 						</tr>
-					</table>
+					</table>				
+					<label>파일1:</label>
+					<input type="file" name="file">
+					<br><br>
+					
 					<div class="bottom">
-					<!-- 찾기중인지, 기본상태인지 구분해서 cancel 보내기.. -->
+						<!-- 찾기중인지, 기본상태인지 구분해서 cancel 보내기.. -->
 						<a href="${pageContext.servletContext.contextPath }/board/cancel/${cCount}">취소</a>
 						<input type="submit" value="등록">
 					</div>

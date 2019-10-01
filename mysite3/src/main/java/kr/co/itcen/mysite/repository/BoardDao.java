@@ -8,11 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kr.co.itcen.mysite.exception.BoardDaoException;
-import kr.co.itcen.mysite.exception.GuestbookDaoException;
+import kr.co.itcen.mysite.exception.FileUploadException;
 import kr.co.itcen.mysite.vo.BoardVo;
+import kr.co.itcen.mysite.vo.FileUploadVo;
 
 @Repository
 public class BoardDao {
+	
 	@Autowired
 	private SqlSession sqlSession;
 	
@@ -24,6 +26,7 @@ public class BoardDao {
 	public Boolean boardReply(BoardVo vo) throws BoardDaoException{
 		int count1 = sqlSession.update("board.writeUpdate",vo);
 		int count2 = sqlSession.insert("board.writeInsert",vo);
+		
 		return count2 == 1;
 	}	
 	
@@ -98,4 +101,14 @@ public class BoardDao {
 	public Long getCount(String kwd) throws BoardDaoException{
 		return sqlSession.selectOne("board.getCount2",kwd);
 	}		
+	
+	public Boolean upload(FileUploadVo vo) throws FileUploadException {		
+		int count = sqlSession.insert("board.upload",vo);
+		
+		return count == 1;
+	}
+	
+	public FileUploadVo getFile(Long titleNo) throws FileUploadException {
+		return sqlSession.selectOne("board.getFile",titleNo);
+	}	
 }

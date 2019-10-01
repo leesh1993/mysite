@@ -32,6 +32,12 @@
 							</div>
 						</td>
 					</tr>
+					<tr>
+						<c:if test="${fileO eq 'fileO' }">
+						<td class="label">파일업로드</td>
+						<td href="">${fileUploadVo.original_name}</td>
+						</c:if>
+					</tr>
 				</table>
 				<div class="bottom">
 					<a href="${pageContext.servletContext.contextPath }/board/list/${cCount }">글목록</a>
