@@ -1,7 +1,5 @@
 package kr.co.itcen.mysite.controller;
 
-import java.util.List;
-
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -9,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -53,36 +50,9 @@ public class UserController {
 	}
 	
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public String login() {
+	public String login(@ModelAttribute UserVo vo) {
 		
 		return "/user/login";
-	}
-	
-	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String login(@ModelAttribute UserVo vo, HttpSession session, Model model) {
-		UserVo userVo = userService.getUser(vo);
-		
-		if(userVo == null) {
-			model.addAttribute("result", "fail");
-			return "/user/login";
-			
-		}
-		
-		//로그인처리
-		session.setAttribute("authUser", userVo);	
-		return "redirect:/"; //쿼리 후 redirect
-	}
-	
-	@RequestMapping(value = "/logout", method = RequestMethod.GET)
-	public String logout(HttpSession session) {
-		//접근 제어(ACL)
-		UserVo authUser = (UserVo)session.getAttribute("authUser");
-		if(authUser != null) {
-			session.removeAttribute("authUser");
-			session.invalidate();
-		}
-			
-		return "redirect:/";
 	}
 		
 	@RequestMapping(value = "/update", method = RequestMethod.GET)
