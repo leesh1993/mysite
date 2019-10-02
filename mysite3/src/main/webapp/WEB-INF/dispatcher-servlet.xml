@@ -15,6 +15,15 @@
 	http://www.springframework.org/schema/context
 	http://www.springframework.org/schema/context/spring-context.xsd">
 	
+	 <!-- 6. MessageSource -->
+	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+	   <property name="basenames">
+	      <list>
+		<value>messages/messages_ko</value>
+	      </list>
+	   </property>
+	</bean>
+		
 	<!-- 파일 업로드 -->
 	<mvc:resources location="file:/uploads/" mapping="/images/**"/>
 	

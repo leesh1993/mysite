@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.co.itcen.mysite.service.BoardService;
+import kr.co.itcen.mysite.vo.FileUploadVo;
 
 @Controller("boardApiController")
 @RequestMapping("/api/board")
@@ -18,10 +19,14 @@ public class BoardController {
 	@ResponseBody
 	@RequestMapping("/download")
 	public String checkEmail(@RequestParam(value = "titleNo", required = false)Long titleNo) {
-		System.out.println("titleNo" + titleNo);
 		
-		boardService.getBoard(titleNo);
+		
+		FileUploadVo vo = boardService.getFile(titleNo);
+		System.out.println("Save_name : " + vo.getSave_name());
+		
 		
 		return "";
 	}
+	
+	
 }
