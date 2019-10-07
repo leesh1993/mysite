@@ -82,13 +82,17 @@ $(function(){
 					</p>
 			
 					<label class="block-label">패스워드</label>
-					<form:input path = "password"/>
-					
+					<form:input type="password" path = "password"/>
+					<p style="font-weight:bold; color:red; text-align:left; padding:2px 0 0 0">
+						<form:errors path="password" />
+					</p>					
 					<fieldset>
 						<legend>성별</legend>
 						<form:radiobuttons items= "${userVo.genders }" path="gender"/>
 					</fieldset>
-					
+					<p style="font-weight:bold; color:red; text-align:left; padding:2px 0 0 0">
+						<form:errors path="gender" />
+					</p>
 					
 					
 					<fieldset>

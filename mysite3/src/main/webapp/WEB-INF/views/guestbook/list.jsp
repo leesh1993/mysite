@@ -1,6 +1,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 
 <%@page import="kr.co.itcen.mysite.repository.GuestbookDao"%>
 <%@page import="kr.co.itcen.mysite.vo.GuestbookVo"%>
@@ -23,15 +25,25 @@
 		<c:import url="/WEB-INF/views/includes/header.jsp" />
 		<div id="content">
 			<div id="guestbook">
-				<form
+				<form:form
+					modelAttribute="guestbookVo"
 					action="${pageContext.servletContext.contextPath }/guestbook/insert"
 					method="post">
 					<table>
 						<tr>
 							<td>이름</td>
-							<td><input type="text" name="name"></td>
+							<td><form:input type="text" path="name"/></td>
+							
+							<spring:hasBindErrors name="guestbookVo">
+								<c:if test='${errors.hasFieldErrors("name") }'>
+									<p style="font-weight:bold; color:red; text-align:left; padding-left:0">
+										<spring:message code='${errors.getFieldError("name").codes[0] }' text='${errors.getFieldError("name").defaultMessage }' />
+									</p>
+								</c:if>
+							</spring:hasBindErrors>
+					
 							<td>비밀번호</td>
-							<td><input type="password" name="password"></td>
+							<td><form:input type="password" path="password"/></td>
 						</tr>
 						<tr>
 							<td colspan=4><textarea name="contents" cols=70 rows=5></textarea></td>
@@ -40,7 +52,7 @@
 							<td colspan=4 align=right><input type="submit" VALUE=" 확인 "></td>
 						</tr>
 					</table>
-				</form>
+				</form:form>
 				<ul>
 					<li><br> <c:set var="count" value="${fn:length(list) }" />
 						<c:forEach items="${list }" var="vo" varStatus="status">

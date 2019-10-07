@@ -2,6 +2,8 @@ package kr.co.itcen.mysite.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,7 +24,8 @@ public class GuestbookController {
 	private GuestbookService guestbookService ;	
 	
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public String getList(Model model) {
+	public String getList(@ModelAttribute GuestbookVo vo,
+			              Model model) {
 		
 		List<GuestbookVo> list = guestbookService.getList();
 		model.addAttribute("list", list);
@@ -31,7 +34,7 @@ public class GuestbookController {
 	}
 	
 	@RequestMapping(value = "/insert", method = RequestMethod.POST)
-	public String join(@ModelAttribute GuestbookVo vo) {
+	public String join(@ModelAttribute @Valid GuestbookVo vo) {
 		
 		guestbookService.insert(vo);
 		

@@ -10,6 +10,9 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import kr.co.itcen.mysite.security.Auth;
+import kr.co.itcen.mysite.security.AuthUser;
 import kr.co.itcen.mysite.service.UserService;
 import kr.co.itcen.mysite.vo.UserVo;
 
@@ -55,16 +58,13 @@ public class UserController {
 		return "/user/login";
 	}
 		
-	@RequestMapping(value = "/update", method = RequestMethod.GET)
-	public String update(Model model, HttpSession session) {
-		UserVo authUser = (UserVo)session.getAttribute("authUser");
-		if(authUser == null) {
-			return "redirect:/";
-		}
-		
-		UserVo userVo = userService.getUpdateUser(authUser.getNo());
+	//@Auth(role = Role.USER)
+	@Auth("USER")
+	@RequestMapping(value="/update", method=RequestMethod.GET)
+	public String update(@AuthUser UserVo authUser, Model model) {
+		Long no = authUser.getNo();	
+		UserVo userVo = userService.getUpdateUser(no);
 		model.addAttribute("userVo", userVo);
-		
 		return "user/update";
 	}
 	
