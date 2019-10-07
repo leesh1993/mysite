@@ -13,10 +13,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import kr.co.itcen.mysite.security.Auth;
 import kr.co.itcen.mysite.security.AuthUser;
+import kr.co.itcen.mysite.security.Role;
 import kr.co.itcen.mysite.service.UserService;
 import kr.co.itcen.mysite.vo.UserVo;
 
-@Auth("USER")
+
 @Controller
 @RequestMapping("/user")
 public class UserController {
@@ -27,7 +28,7 @@ public class UserController {
 	@RequestMapping(value = "/join", method = RequestMethod.GET)
 	public String join(@ModelAttribute UserVo vo) {
 			
-		return "/user/join";
+		return "user/join";
 	}
 	
 	
@@ -50,17 +51,18 @@ public class UserController {
 	@RequestMapping(value = "/joinsuccess", method = RequestMethod.GET)
 	public String joinsuccess() {
 	
-		return "/user/joinsuccess";
+		return "user/joinsuccess";
 	}
 	
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String login(@ModelAttribute UserVo vo) {
 		
-		return "/user/login";
+		return "user/login";
 	}
 		
-	//@Auth(role = Role.USER)
-	@Auth("USER")
+	
+	//@Auth("USER")
+	@Auth(role = Role.USER)
 	@RequestMapping(value="/update", method=RequestMethod.GET)
 	public String update(@AuthUser UserVo authUser, Model model) {
 
@@ -74,7 +76,7 @@ public class UserController {
 		
 		UserVo authUser = (UserVo)session.getAttribute("authUser");
 		if(authUser == null) {
-			return "redirect:/";
+			return "user/join";
 		}
 		
 		vo.setNo(authUser.getNo());
