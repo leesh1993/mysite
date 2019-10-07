@@ -16,6 +16,7 @@ import kr.co.itcen.mysite.security.AuthUser;
 import kr.co.itcen.mysite.service.UserService;
 import kr.co.itcen.mysite.vo.UserVo;
 
+@Auth("USER")
 @Controller
 @RequestMapping("/user")
 public class UserController {

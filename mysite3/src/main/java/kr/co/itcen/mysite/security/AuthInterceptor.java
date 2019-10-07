@@ -26,13 +26,15 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 		
 		//3. @Auth 받아오기
 		Auth auth = handlerMethod.getMethodAnnotation(Auth.class);
-		
+
 		
 		//4. @Auth가 없으면 class type에 있을 수 있으므로...
 		if(auth == null) {
-			Auth checkedAuth = handlerMethod.getMethod().getDeclaringClass().getAnnotation(Auth.class);
+
+			Auth checkedClass = handlerMethod.getMethod().getDeclaringClass().getAnnotation(Auth.class);
 			
-			if(checkedAuth == null) {
+			if(checkedClass == null) {
+			
 				return true;
 			}
 					
