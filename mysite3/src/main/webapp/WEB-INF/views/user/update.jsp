@@ -1,6 +1,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@page import="kr.co.itcen.mysite.repository.UserDao"%>
 <%@page import="kr.co.itcen.mysite.vo.UserVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
@@ -18,7 +20,8 @@
 		<div id="content">
 			<div id="user">
 
-				<form id="update-form" name="updateForm" method="post" action="${pageContext.servletContext.contextPath }/user/update/${userNo}">
+				<form:form 
+					modelAttribute ="userVo" id="update-form" name="updateForm" method="post" action="${pageContext.servletContext.contextPath }/user/update/${userNo}">
 					<label class="block-label" for="name">이름</label>
 					<input id="name" name="name" type="text" value="${userVo.name }">
 					<label class="block-label" for="email">이메일</label>
@@ -41,7 +44,7 @@
 					
 					<input type="submit" value="수정하기">
 					
-				</form>
+				</form:form>
 			</div>
 		</div>
 		<c:import url="/WEB-INF/views/includes/navigation.jsp" />

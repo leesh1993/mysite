@@ -25,8 +25,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 		vo.setEmail(email);
 		vo.setPassword(password);
 		
-		// 어플리케이션 어디서든지 Spring Container(ApplicationContext)를
-		// 가져오는 방법
+		// 어플리케이션 어디서든지 Spring Container(ApplicationContext)를 가져오는 방법
 		// ApplicationContext appCtxt = WebApplicationContextUtils.getWebApplicationContext(request.getServletContext());
 		// UserService userService = appCtxt.getBean(UserService.class);
 		

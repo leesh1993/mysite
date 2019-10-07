@@ -30,7 +30,12 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 		
 		//4. @Auth가 없으면 class type에 있을 수 있으므로...
 		if(auth == null) {
-			//과제: class type에서 @Auth가 있는 지를 확인해 봐야한다.
+			Auth checkedAuth = handlerMethod.getMethod().getDeclaringClass().getAnnotation(Auth.class);
+			
+			if(checkedAuth == null) {
+				return true;
+			}
+					
 		}
 		
 		//5. @Auth가 없으면
@@ -50,13 +55,15 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 
 		//9. 메소드의 @Auth의 Role이 "USER"인 경우.
 		//   인증만 되어 있으면 모두 통과
-		if(role == "USER") {
+		if("USER".equals(role)) {
 			return true;
 		}
 		
 		//10. 메소드의 @Auth의 Role이 "ADMIN"인 경우
 		// -- 과제
-		
+		if("ADMIN".equals(role)) {
+			return true;
+		}
 		
 		return true;
 	}
