@@ -16,7 +16,6 @@
 		</selectKey>
 		
 		</insert>
-		
 
 		
 		<update id="writeUpdate" parameterType="boardvo">
